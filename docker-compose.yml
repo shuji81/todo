@@ -8,6 +8,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
+    tty: true
     volumes:
       - ./app/:/var/www/html
     environment:
@@ -22,6 +23,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
+    tty: true
     ports:
       - ${WEB_PORT}:80
     depends_on:
@@ -35,6 +37,7 @@ services:
       dockerfile: ./docker/mysql/Dockerfile
     ports:
       - ${DB_PORT}:3306
+    tty: true
     environment:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
