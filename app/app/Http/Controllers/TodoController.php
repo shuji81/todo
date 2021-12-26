@@ -16,16 +16,27 @@ class TodoController extends Controller
 
     public function create(Request $request)
     {
-        return "create";
+        $this->validate($request, Todo::$rules);
+        $todo = new Todo;
+        $form = $request->all();
+        unset($form['_token_']);
+        $todo->fill($form)->save();
+        return redirect('/');
     }
 
     public function update(Request $request)
     {
-        return "update";
+        $this->validate($request, Todo::$rules);
+        $todo = Todo::find($request->id);
+        $form = $request->all();
+        unset($form['_token_']);
+        $todo->fill($form)->save();
+        return redirect('/');
     }
 
     public function delete(Request $request)
     {
-        return "delete";
+        Todo::find($request->id)->delete();
+        return redirect('/');
     }
 }

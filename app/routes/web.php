@@ -18,6 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('/','TodoController@index');
-Route::post('/todo/create','TodoController@create');
-Route::post('/todo/update','TodoController@update');
-Route::post('/todo/delete','TodoController@delete');
+Route::post('/todo/create','TodoController@create')->name('todo.create');
+Route::post('/todo/update','TodoController@update')->name('todo.update');
+Route::post('/todo/delete','TodoController@delete')->name('todo.delete');
